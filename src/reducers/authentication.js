@@ -26,6 +26,29 @@ export default (state = initialState, action) => {
         ...state,
         credentials: action.credentials,
       };
+      case AUTHENTICATION_USER_FETCHED:
+      return {
+        ...state,
+        currentUser: action.currentUser,
+      };
+    case AUTHENTICATION_COMPLETE:
+      return {
+        ...state,
+        isAuthenticating: false,
+        isAuthenticated: true,
+      };
+    case AUTHENTICATION_FAILURE:
+      return {
+        ...state,
+        isAuthenticating: false,
+        credentials: {},
+      };
+    case AUTHENTICATION_LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        credentials: {},
+      };
     default:
       return state;
   }
